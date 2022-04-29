@@ -48,11 +48,14 @@ const Packages = () => {
   const [jwtToken, setJwtToken] = useState();
 
   const fetchPackages = useCallback(async (token) => {
-    const response = await fetch(`/api/packages`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://asia-southeast1-atlas-fitness-fecab.cloudfunctions.net/app/packages`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     if (!response.ok) {
       const error = await response.json();
       openSnackBar(error);
