@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { MdClose } from "react-icons/md";
 import Snackbar from "../components/Snackbar";
+import { url } from "../urlConfig";
 
 const columns = [
   { field: "id", headerName: "ID", width: 200 },
@@ -48,14 +49,11 @@ const Packages = () => {
   const [jwtToken, setJwtToken] = useState();
 
   const fetchPackages = useCallback(async (token) => {
-    const response = await fetch(
-      `https://asia-southeast1-atlas-fitness-fecab.cloudfunctions.net/app/packages`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await fetch(`${url}/packages`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!response.ok) {
       const error = await response.json();
       openSnackBar(error);

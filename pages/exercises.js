@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { MdClose } from "react-icons/md";
 import Snackbar from "../components/Snackbar";
+import { url } from "../urlConfig";
 
 const columns = [
   { field: "id", headerName: "ID", width: 200 },
@@ -83,7 +84,7 @@ const Exercises = () => {
   const [jwtToken, setJwtToken] = useState();
 
   const fetchExercises = useCallback(async (token) => {
-    const response = await fetch(`/api/exercises`, {
+    const response = await fetch(`${url}/exercises`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

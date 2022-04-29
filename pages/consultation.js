@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { MdClose } from "react-icons/md";
 import Snackbar from "../components/Snackbar";
+import { url } from "../urlConfig";
 
 const columns = [
   { field: "id", headerName: "ID", width: 200 },
@@ -64,7 +65,7 @@ const Consultation = () => {
   const { user, logout } = useUser();
 
   const fetchOnboardQuestions = useCallback(async (token) => {
-    const response = await fetch(`/api/onboard`, {
+    const response = await fetch(`${url}/onboard`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -80,7 +81,7 @@ const Consultation = () => {
   }, []);
 
   const fetchConsultations = useCallback(async (token) => {
-    const response = await fetch(`/api/consultation`, {
+    const response = await fetch(`${url}/consultation`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -115,7 +116,7 @@ const Consultation = () => {
   }, []);
 
   const fetchPackages = useCallback(async (token) => {
-    const response = await fetch(`/api/packages`, {
+    const response = await fetch(`${url}/packages`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -129,7 +130,7 @@ const Consultation = () => {
   }, []);
 
   const fetchLeads = useCallback(async (token) => {
-    const response = await fetch(`/api/leads`, {
+    const response = await fetch(`${url}/leads`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -204,7 +205,7 @@ const Consultation = () => {
   };
 
   const createConsultation = async (body) => {
-    const response = await fetch(`/api/consultation`, {
+    const response = await fetch(`${url}/consultation`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -273,7 +274,7 @@ const Consultation = () => {
         }
       });
     });
-    const response = await fetch(`/api/customers`, {
+    const response = await fetch(`${url}/customers`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${jwtToken}`,
