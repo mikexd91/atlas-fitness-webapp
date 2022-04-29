@@ -166,14 +166,14 @@ const Consultation = () => {
     const stepperData = userData
     // console.log(index, position, stepperData, value)
     if(stepperData[index]?.questions[position]?.type==='time-select'){
-      stepperData[index]?.questions[position]?.answer = value
+      stepperData[index].questions[position].answer = value
       setUserData([...stepperData])
     } else if(stepperData[index]?.questions[position]?.type==='toggle'){
-      stepperData[index]?.questions[position]?.answer = value
+      stepperData[index].questions[position].answer = value
       setUserData([...stepperData])
     }else {
       if (!otherAnswer) stepperData[index]?.questions[position]?.answer = value
-      else stepperData[index]?.questions[position]?.answer2 = value
+      else stepperData[index].questions[position].answer2 = value
       setUserData([...stepperData])
     }
   };
