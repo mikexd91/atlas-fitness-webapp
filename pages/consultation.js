@@ -78,6 +78,7 @@ const Consultation = () => {
     setOnboardData(onboard);
     const stepperData = formulateStepperData(onboard);
     setUserData(stepperData);
+    openSnackBar(onboard);
   }, []);
 
   const fetchConsultations = useCallback(async (token) => {
@@ -111,7 +112,7 @@ const Consultation = () => {
       });
       rows.push(temp);
     });
-
+    openSnackBar(consultations);
     setConsultations(rows);
   }, []);
 
@@ -127,6 +128,7 @@ const Consultation = () => {
     }
     let packages = await response.json();
     setPackages(packages.data);
+    openSnackBar(packages);
   }, []);
 
   const fetchLeads = useCallback(async (token) => {
@@ -140,8 +142,12 @@ const Consultation = () => {
       openSnackBar(error);
     }
     let leads = await response.json();
+    leads.data.map((item) => {
+      item.label = `${item.firstName} ${item.lastName} - ${item.phone}`;
+    });
     console.log(leads);
     setLeads(leads.data);
+    openSnackBar(leads);
   }, []);
 
   useEffect(async () => {

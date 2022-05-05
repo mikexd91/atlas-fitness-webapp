@@ -43,7 +43,9 @@ const useUser = () => {
       .auth()
       .onIdTokenChanged(async (userToken) => {
         if (userToken) {
+          console.log(userToken, "usertoken");
           const userData = await mapUserData(userToken);
+          console.log(userData, "userData");
           setUserCookie(userData);
           setUser(userData);
         } else {

@@ -74,6 +74,11 @@ const trainingMenu = [
     path: "/exercises",
     role: "admin",
   },
+  {
+    display: "Exercise Config",
+    path: "/exercise-config",
+    role: "admin",
+  },
 ];
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];

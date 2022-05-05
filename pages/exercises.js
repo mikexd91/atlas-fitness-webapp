@@ -84,7 +84,7 @@ const Exercises = () => {
   const [jwtToken, setJwtToken] = useState();
 
   const fetchExercises = useCallback(async (token) => {
-    const response = await fetch(`${url}/exercises`, {
+    const response = await fetch(`${url}/exercise`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
