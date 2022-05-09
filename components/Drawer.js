@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useUser } from "../auth/useUser";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import Drawer from "@mui/material/Drawer";
@@ -32,6 +33,11 @@ const darkTheme = createTheme({
 
 const adminmMenu = [
   {
+    display: "Trainers",
+    path: "/trainers",
+    role: "admin",
+  },
+  {
     display: "Packages",
     path: "/packages",
     role: "admin",
@@ -42,18 +48,13 @@ const adminmMenu = [
     role: "admin",
   },
   {
-    display: "Customers",
-    path: "/customers",
-    role: "admin",
-  },
-  {
-    display: "Trainers",
-    path: "/trainers",
-    role: "admin",
-  },
-  {
     display: "Consultation",
     path: "/consultation",
+    role: "admin",
+  },
+  {
+    display: "Customers",
+    path: "/customers",
     role: "admin",
   },
 ];
@@ -62,11 +63,6 @@ const trainingMenu = [
   {
     display: "Programs",
     path: "/programs",
-    role: "admin",
-  },
-  {
-    display: "Trainings",
-    path: "/trainings",
     role: "admin",
   },
   {
@@ -81,17 +77,24 @@ const trainingMenu = [
   },
 ];
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Logout"];
 
 export default function ClippedDrawer({ children }) {
   const router = useRouter();
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const { user, logout } = useUser();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
   const handleCloseUserMenu = (data) => {
     console.log(data, "data");
+    setAnchorElUser(null);
+  };
+
+  const logoutUser = (data) => {
+    console.log(data, "data");
+    logout();
     setAnchorElUser(null);
   };
 
@@ -142,7 +145,7 @@ export default function ClippedDrawer({ children }) {
                 {settings.map((setting) => (
                   <MenuItem
                     key={setting}
-                    onClick={(setting) => handleCloseUserMenu(setting)}
+                    onClick={(setting) => logoutUser(setting)}
                   >
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
